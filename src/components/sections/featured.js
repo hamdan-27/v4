@@ -303,6 +303,7 @@ const StyledProject = styled.li`
   }
 `;
 
+// Remove blurry placeholder
 const Featured = () => {
   const data = useStaticQuery(graphql`
     {
@@ -384,7 +385,7 @@ const Featured = () => {
                     <div className="project-links">
                       {cta && (
                         <a href={cta} aria-label="Course Link" className="cta">
-                          Learn More
+                          Python SDK
                         </a>
                       )}
                       {github && (
@@ -392,7 +393,7 @@ const Featured = () => {
                           <Icon name="GitHub" />
                         </a>
                       )}
-                      {external && !cta && (
+                      {external && (
                         <a href={external} aria-label="External Link" className="external">
                           <Icon name="External" />
                         </a>
