@@ -16,6 +16,16 @@ const variables = css`
     --green-tint: rgba(100, 255, 218, 0.1);
     --pink: #f57dff;
     --blue: #57cbff;
+    --dark-purple: #1a0b2e;
+    --gold: #ffd700;
+    --dark-charcoal: #121212;
+    --coral: #ff7f50;
+    --deep-teal: #003b49;
+    --peach: #ffb6a3;
+    --dark-gray: #1c1c1c;
+    --electric-blue: #00b2ff;
+    --deep-burgundy: #2d0c10;
+    --mint: #98ff98;
 
     --font-sans: 'Calibre', 'Inter', 'San Francisco', 'SF Pro Text', -apple-system, system-ui,
       sans-serif;
