@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { srConfig, email } from '@config';
 import sr from '@utils/sr';
 import { usePrefersReducedMotion } from '@hooks';
+import { Icon } from '@components/icons';
 
 const StyledContactSection = styled.section`
   max-width: 600px;
@@ -35,9 +36,34 @@ const StyledContactSection = styled.section`
     font-size: clamp(40px, 5vw, 60px);
   }
 
+  .contact-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 35px;
+    margin-top: 50px;
+  }
+
   .email-link {
     ${({ theme }) => theme.mixins.bigButton};
-    margin-top: 50px;
+  }
+
+  .whatsapp-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    svg {
+      width: 35px;
+      height: 35px;
+      margin-top: -4px;
+    }
+
+    &:hover,
+    &:focus {
+      transform: translateY(-3px);
+    }
   }
 `;
 
@@ -65,9 +91,18 @@ const Contact = () => {
         to get back to you!
       </p>
 
-      <a className="email-link" href={`mailto:${email}`}>
-        Say Hello
-      </a>
+      <div className="contact-buttons">
+        <a className="email-link" href={`mailto:${email}`}>
+          Say Hello
+        </a>
+        <a
+          className="whatsapp-link"
+          href="https://wa.me/+971504142166"
+          target="_blank"
+          rel="noopener noreferrer">
+          <Icon name="Whatsapp" />
+        </a>
+      </div>
     </StyledContactSection>
   );
 };

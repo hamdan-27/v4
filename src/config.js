@@ -18,10 +18,10 @@ module.exports = {
       name: 'Linkedin',
       url: 'https://www.linkedin.com/in/hamdan27',
     },
-    // {
-    //   name: 'Codepen',
-    //   url: 'https://codepen.io/hamdan27',
-    // },
+    {
+      name: 'Whatsapp',
+      url: 'https://wa.me/+971504142166',
+    },
   ],
 
   navLinks: [
