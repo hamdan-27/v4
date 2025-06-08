@@ -1,7 +1,7 @@
 ---
 date: '2017-04-01'
 title: 'Associate'
-company: 'IonCure Pvt. Ltd.'
+company: 'IonCure'
 location: 'India (Remote)'
 range: 'May - December 2022'
 url: 'https://ioncurerx.com/'
