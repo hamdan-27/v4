@@ -1,3 +1,13 @@
+/* global globalThis */
+// Polyfill File global for Node 18 compatibility with gatsby-plugin-offline
+if (typeof globalThis.File === 'undefined') {
+  try {
+    globalThis.File = require('buffer').File;
+  } catch (e) {
+    /* ignore */
+  }
+}
+
 const config = require('./src/config');
 
 module.exports = {
