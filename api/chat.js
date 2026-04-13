@@ -6,7 +6,9 @@ const ABOUT_TEXT = `Hey there! I'm Hamdan, a driven software engineering student
 Skills I've been working with recently: Python, LangChain, FastAPI, PostgreSQL, Flask, MySQL, React, MongoDB, Node.js, AWS, Express.js`;
 
 function readDirRecursive(dir, filePaths = []) {
-  if (!fs.existsSync(dir)) {return filePaths;}
+  if (!fs.existsSync(dir)) {
+    return filePaths;
+  }
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) {
@@ -22,12 +24,12 @@ function buildKnowledgeBase() {
   const root = path.join(__dirname, '..');
   const sections = [];
 
-  sections.push(`=== ABOUT ME ===\n${  ABOUT_TEXT}`);
+  sections.push(`=== ABOUT ME ===\n${ABOUT_TEXT}`);
 
   const jobFiles = readDirRecursive(path.join(root, 'content', 'jobs'));
   if (jobFiles.length) {
     const jobsContent = jobFiles.map(f => fs.readFileSync(f, 'utf8').trim()).join('\n\n---\n\n');
-    sections.push(`=== WORK EXPERIENCE ===\n${  jobsContent}`);
+    sections.push(`=== WORK EXPERIENCE ===\n${jobsContent}`);
   }
 
   const featuredFiles = readDirRecursive(path.join(root, 'content', 'featured'));
@@ -35,7 +37,7 @@ function buildKnowledgeBase() {
     const featuredContent = featuredFiles
       .map(f => fs.readFileSync(f, 'utf8').trim())
       .join('\n\n---\n\n');
-    sections.push(`=== FEATURED PROJECTS ===\n${  featuredContent}`);
+    sections.push(`=== FEATURED PROJECTS ===\n${featuredContent}`);
   }
 
   const projectFiles = readDirRecursive(path.join(root, 'content', 'projects'));
@@ -43,14 +45,14 @@ function buildKnowledgeBase() {
     const projectsContent = projectFiles
       .map(f => fs.readFileSync(f, 'utf8').trim())
       .join('\n\n---\n\n');
-    sections.push(`=== OTHER PROJECTS ===\n${  projectsContent}`);
+    sections.push(`=== OTHER PROJECTS ===\n${projectsContent}`);
   }
 
   const cvPath = path.join(root, 'content', 'cv.md');
   if (fs.existsSync(cvPath)) {
     const cvContent = fs.readFileSync(cvPath, 'utf8').trim();
     if (cvContent) {
-      sections.push(`=== CV / ADDITIONAL INFO ===\n${  cvContent}`);
+      sections.push(`=== CV / ADDITIONAL INFO ===\n${cvContent}`);
     }
   }
 
@@ -60,7 +62,7 @@ function buildKnowledgeBase() {
 // Build once at cold start
 const knowledgeBase = buildKnowledgeBase();
 
-const SYSTEM_PROMPT = `You are Hamdan Mohammad. A visitor is interviewing you through your portfolio website. Respond in first person, naturally and professionally, as if you're in a real job interview or a casual technical conversation with a recruiter or fellow developer. Be concise, personable, and enthusiastic. Use "I", "my", "me". Only speak to what you actually know from your profile below. If asked something outside your experience, respond honestly as Hamdan would — don't make things up.
+const SYSTEM_PROMPT = `You are Hamdan Mohammad. A visitor is interviewing you through your portfolio website. Respond in first person, naturally and professionally, as if you're in a real job interview or a casual technical conversation with a recruiter or fellow developer. Be concise, personable, and enthusiastic. Use "I", "my", "me". Try to be as concise as possible and avoid answering with more than fifty words. Only speak to what you actually know from your profile below. If asked something outside your experience, respond honestly as Hamdan would — don't make things up.
 
 ${knowledgeBase}`;
 

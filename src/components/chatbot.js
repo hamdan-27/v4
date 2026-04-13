@@ -71,7 +71,6 @@ const StyledChatWindow = styled.div`
   flex-direction: column;
   overflow: hidden;
   margin-bottom: 12px;
-  animation: ${slideUp} 0.25s var(--easing) both;
 
   @media (max-width: 768px) {
     position: fixed;
@@ -84,7 +83,7 @@ const StyledChatWindow = styled.div`
 
   &.chat-enter {
     opacity: 0;
-    transform: translateY(16px) scale(0.97);
+    transform: translateY(14px) scale(0.97);
   }
   &.chat-enter-active {
     opacity: 1;
@@ -97,7 +96,7 @@ const StyledChatWindow = styled.div`
   }
   &.chat-exit-active {
     opacity: 0;
-    transform: translateY(16px) scale(0.97);
+    transform: translateY(10px) scale(0.98);
     transition: opacity 0.18s var(--easing), transform 0.18s var(--easing);
   }
 `;
@@ -366,7 +365,9 @@ const Chatbot = () => {
 
   const sendMessage = async () => {
     const text = inputValue.trim();
-    if (!text || isLoading) {return;}
+    if (!text || isLoading) {
+      return;
+    }
 
     const userMessage = { role: 'user', content: text };
     const nextMessages = [...messages, userMessage];
@@ -407,7 +408,9 @@ const Chatbot = () => {
 
           if (line.startsWith('data: ')) {
             const data = line.slice(6);
-            if (data === '[DONE]') {break;}
+            if (data === '[DONE]') {
+              break;
+            }
 
             try {
               const parsed = JSON.parse(data);
@@ -431,7 +434,9 @@ const Chatbot = () => {
       setMessages(prev => [...prev, { role: 'assistant', content: accumulated }]);
       setStreamingText('');
     } catch (err) {
-      if (err.name === 'AbortError') {return;}
+      if (err.name === 'AbortError') {
+        return;
+      }
       setMessages(prev => [
         ...prev,
         {
@@ -465,7 +470,9 @@ const Chatbot = () => {
   };
 
   // SSR guard — don't render during Gatsby build
-  if (typeof window === 'undefined') {return null;}
+  if (typeof window === 'undefined') {
+    return null;
+  }
 
   return (
     <StyledChatWrapper ref={chatWindowRef}>
